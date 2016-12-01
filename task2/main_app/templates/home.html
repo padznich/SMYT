@@ -15,16 +15,38 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>{% block title %}Base page{% endblock %}</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+
 </head>
-  <body>
+<body ng-app="main_app.demo">
+
+    {% verbatim %}
+    <div ng-controller="Main_appController">
+        {{ product.name }} is cost {{ product.price }} dollars.
+    </div>
+    {% endverbatim %}
+
+
+    <script>
+        (function() {
+            'use strict';
+            angular.module('main_app.demo', [])
+
+            .controller('Main_appController', ['$scope', Main_appController]);
+
+            function Main_appController($scope) {
+                $scope.product = {
+                    name: 'angProduct_1',
+                    price: 100
+                }
+            };
+        } )();
+    </script>
     <div id="content">
         {{ q1 }}
         <br />
         {{ q2 }}
-        <!--{% for product in products %}-->
-            <!--<ul>{{ product.name }} {{product.category.name}} {{ product.price }}</ul>-->
-        <!--{% endfor %}-->
     </div>
-  </body>
+</body>
 </html>
 </header>
