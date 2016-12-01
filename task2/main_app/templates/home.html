@@ -22,7 +22,12 @@
 
     {% verbatim %}
     <div ng-controller="Main_appController">
-        {{ product.name }} is cost {{ product.price }} dollars.
+        <div ng-repeat="list in data">
+            <h3>{{ list.name }}</h3>
+            <ul>
+                <li ng-repeat="product in list.products">{{ product.name }}</li>
+            </ul>
+        </div>
     </div>
     {% endverbatim %}
 
@@ -30,15 +35,29 @@
     <script>
         (function() {
             'use strict';
+
             angular.module('main_app.demo', [])
 
             .controller('Main_appController', ['$scope', Main_appController]);
 
             function Main_appController($scope) {
-                $scope.product = {
-                    name: 'angProduct_1',
-                    price: 100
-                }
+                $scope.data = [
+                    {
+                        name: 'Furniture',
+                        products: [
+                            {name: 'Table'},
+                            {name: 'Chair'},
+                            {name: 'Bed'},
+                        ]
+                    },
+                    {
+                        name: 'Fruit',
+                        products: [
+                            {name: 'Lemon'},
+                            {name: 'Apple'},
+                        ]
+                    },
+                ]
             };
         } )();
     </script>
