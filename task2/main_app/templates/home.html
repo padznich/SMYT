@@ -19,6 +19,7 @@
 
 </head>
 <body ng-app="main_app.demo">
+    {% load staticfiles %}
 
     {% verbatim %}
     <div ng-controller="Main_appController">
@@ -27,45 +28,14 @@
             <ul>
                 <li ng-repeat="product in list.products">{{ product.name }}</li>
             </ul>
+            <input type="text" ng-model="new_name"/>
+            <button ng-click="add(list, new_name)">+</button>
         </div>
     </div>
     {% endverbatim %}
 
+    <script src="{% static 'main_app/main_app.js' %}"></script>
 
-    <script>
-        (function() {
-            'use strict';
-
-            angular.module('main_app.demo', [])
-
-            .controller('Main_appController', ['$scope', Main_appController]);
-
-            function Main_appController($scope) {
-                $scope.data = [
-                    {
-                        name: 'Furniture',
-                        products: [
-                            {name: 'Table'},
-                            {name: 'Chair'},
-                            {name: 'Bed'},
-                        ]
-                    },
-                    {
-                        name: 'Fruit',
-                        products: [
-                            {name: 'Lemon'},
-                            {name: 'Apple'},
-                        ]
-                    },
-                ]
-            };
-        } )();
-    </script>
-    <div id="content">
-        {{ q1 }}
-        <br />
-        {{ q2 }}
-    </div>
 </body>
 </html>
 </header>
