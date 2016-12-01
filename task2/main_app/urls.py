@@ -1,10 +1,10 @@
-from django.conf.urls import url
+from .api import ProductViewSet, CategoryViewSet
 
-from .api import ProductApi, CategoryApi
+from rest_framework.routers import DefaultRouter
 
-urlpatterns = [
 
-    #REST
-    url(r'^products$', ProductApi.as_view()),
-    url(r'^categories$', CategoryApi.as_view())
-]
+router = DefaultRouter()
+router.register(r'categories', CategoryViewSet)
+router.register(r'products', ProductViewSet)
+
+urlpatterns = router.urls

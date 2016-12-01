@@ -3,9 +3,9 @@
 
     angular.module('main_app.demo', [])
 
-    .controller('Main_appController', ['$scope', Main_appController]);
+    .controller('Main_appController', ['$scope', '$http', Main_appController]);
 
-    function Main_appController($scope) {
+    function Main_appController($scope, $http) {
 
         $scope.add = function (list, name) {
             var product = {
@@ -15,22 +15,9 @@
             list.products.push(product)
         };
 
-        $scope.data = [
-            {
-                name: 'Furniture',
-                products: [
-                    {name: 'Table'},
-                    {name: 'Chair'},
-                    {name: 'Bed'},
-                ]
-            },
-            {
-                name: 'Fruit',
-                products: [
-                    {name: 'Lemon'},
-                    {name: 'Apple'},
-                ]
-            },
-        ]
+        $scope.data = [];
+        $http.get('/main_app/products').then(function(response) {
+            $scope.data = response.data;
+        });
     };
 } )();
