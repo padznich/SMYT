@@ -12,11 +12,17 @@
                 name: name
             };
 
-            list.products.push(product)
+            $http.post('/main_app/products/', product)
+              .then(function (response) {
+                list.products.push(response.data);
+              },
+              function() {
+                  alert('Could not create the product.');
+              });
         };
 
         $scope.data = [];
-        $http.get('/main_app/products').then(function(response) {
+        $http.get('/main_app/categories/').then(function(response) {
             $scope.data = response.data;
         });
     };

@@ -6,8 +6,9 @@ from models import Product
 
 def show_home_page(request):
 
-    q1 = Product.objects.filter(price__gte=100).values('category').annotate(total=Count('category'))
-    q2 = Product.objects.filter(price__gte=100).values('category').annotate(total=Count('category')).filter(total__gt=10)
+    a1 = Product.objects.select_related('category').get(id=1)
+    q1 = a1.price  # a1.category
+    q2 = Product.objects.all()
 
     print "-" * 100
     for p in Product.objects.all():
@@ -15,4 +16,4 @@ def show_home_page(request):
 
     context = {'q1': q1, 'q2': q2}
 
-    return render(request, 'home.html', context)
+    return render(request, 'index.html', context)

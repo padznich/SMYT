@@ -18,12 +18,16 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 
 from main_app import views
+from main_app.api_tastypie import ProductrResource   # Tastypie api
+
+product_resource = ProductrResource()  # Tastypie api
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api/tastypie/', include(product_resource.urls)),  # Tastypie api
 
     url(r'^$', TemplateView.as_view(template_name='home.html')),
-    # url(r'^home/$', views.show_home_page),
+    url(r'^home/$', views.show_home_page),
 
     # REST
     url(r'^main_app/', include('main_app.urls'))
