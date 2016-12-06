@@ -8,7 +8,9 @@ def cut(s):
     try:
         pattern = r"(.*\))*(\w*)(\(*\w*)"
         if re.match(pattern, s).group(1):
-            return re.match(pattern, s).group(1) + re.match(pattern, s).group(2)
+            return re.match(
+                pattern, s
+            ).group(1) + re.match(pattern, s).group(2)
         elif re.match(pattern, s).group(2):
             return re.match(pattern, s).group(2)
         elif re.match(pattern, s).group(3):

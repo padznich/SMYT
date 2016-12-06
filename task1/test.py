@@ -46,7 +46,9 @@ class StringTestCase(unittest.TestCase):
         self.assertTrue(cut_s('(d)(') == '(d)')
         self.assertTrue(cut_s('(d)((((((') == '(d)')
         self.assertTrue(cut_s('(d)))((((((') == '(d)))')
-        self.assertTrue(cut_s('esdfd((esdf)(es)dsa(df') == 'esdfd((esdf)(es)dsa')
+        self.assertTrue(cut_s(
+            'esdfd((esdf)(es)dsa(df') == 'esdfd((esdf)(es)dsa'
+                        )
 
 
 if __name__ == '__main__':
